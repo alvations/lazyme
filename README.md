@@ -1,0 +1,2 @@
+# lazyme
+Lazy python recipes.
