@@ -8,7 +8,7 @@ from distutils.core import setup
 
 setup(
     name='lazyme',
-    version='0.0.1',
+    version='0.0.4',
     packages=['lazyme',],
     description='Lazy python recipes',
     license="MIT",
