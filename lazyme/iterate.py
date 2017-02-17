@@ -26,9 +26,9 @@ def per_chunk(iterable, n=1, fillvalue=None):
     """
     From http://stackoverflow.com/a/8991553/610569
 
-        >>> list(iter_by_n('abcdefghi', n=2))
+        >>> list(per_chunk('abcdefghi', n=2))
         [('a', 'b'), ('c', 'd'), ('e', 'f'), ('g', 'h'), ('i', None)]
-        >>> list(iter_by_n('abcdefghi', n=3))
+        >>> list(per_chunk('abcdefghi', n=3))
         [('a', 'b', 'c'), ('d', 'e', 'f'), ('g', 'h', 'i')]
     """
     args = [iter(iterable)] * n
