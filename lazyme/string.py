@@ -4,6 +4,15 @@ from __future__ import print_function
 import re
 import sys
 
+palette = {'red': '\033[91m',
+           'green': '\033[92m',
+           'yellow': '\033[93m',
+           'blue': '\033[94m',
+           'pink': '\033[95m',
+           'default': '\033[0m',
+           'bold': '\033[1m',
+           'underline': '\033[4m',
+          }
 
 def deduplicate(s, ch):
     """
@@ -55,15 +64,6 @@ def color_print(s, color='default', bold=False, underline=False,
     """
     From http://stackoverflow.com/a/287944/610569
     """
-    palette = {'red': '\033[91m',
-               'green': '\033[92m',
-               'yellow': '\033[93m',
-               'blue': '\033[94m',
-               'pink': '\033[95m',
-               'default': '\033[0m',
-               'bold': '\033[1m',
-               'underline': '\033[4m',
-              }
     s = palette[color] + s
     if bold:
         s = palette['bold'] + s
@@ -71,6 +71,14 @@ def color_print(s, color='default', bold=False, underline=False,
         s = palette['underline'] + s
     print(s + palette['default'], end=end, file=file)
 
+
+def color_str(s, color='default', bold=False, underline=False):
+    s = palette[color] + s
+    if bold:
+        s = palette['bold'] + s
+    if underline:
+        s = palette['underline'] + s
+    return s + palette['default']
 
 
 
