@@ -49,3 +49,12 @@ def per_window(sequence, n=1):
         yield tuple(seq[start:stop])
         start += 1
         stop += 1
+
+def zigzag(sequence):
+    """
+    http://stackoverflow.com/a/1442794/610569
+
+        >>> zigzag(list(range(10)))
+        ([0, 2, 4, 6, 8], [1, 3, 5, 7, 9])
+    """
+    return sequence[::2], sequence[1::2] # Returns (evens, odds)
