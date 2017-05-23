@@ -25,11 +25,11 @@ def deduplicate(s, ch):
     return ch.join([substring for substring in s.strip().split(ch) if substring])
 
 
-def remove_html_tags(s):
+def remove_html_tags(s, pad=' '):
     """
     From http://stackoverflow.com/a/12982689/610569
     """
-    return re.sub('<.*?>', '', s)
+    return re.sub('<.*?>', pad, s)
 
 
 def rstrip_digit(s):
