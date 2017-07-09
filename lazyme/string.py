@@ -9,6 +9,17 @@ palette = {'red': '\033[91m',
            'yellow': '\033[93m',
            'blue': '\033[94m',
            'pink': '\033[95m',
+           'gray': '\033[37m',
+           'black': '\033[30m',
+           'white': '\033[97m',
+           'back_red': '\033[101m',
+           'back_green': '\033[102m',
+           'back_yellow': '\033[103m',
+           'back_blue': '\033[104m',
+           'back_pink': '\033[105m',
+           'back_gray':, '\033[47m',
+           'back_black':, '\033[40m',
+           'back_white':, '\033[107m',
            'default': '\033[0m',
            'bold': '\033[1m',
            'underline': '\033[4m',
@@ -59,7 +70,7 @@ def remove_text_inside_brackets(s, brackets="()[]"):
     return ''.join(saved_chars)
 
 
-def color_print(s, color='default', bold=False, underline=False,
+def color_print(s, color='default', bold=False, background='', underline=False,
                 end='\n', file=sys.stdout):
     """
     From http://stackoverflow.com/a/287944/610569
@@ -69,37 +80,18 @@ def color_print(s, color='default', bold=False, underline=False,
         s = palette['bold'] + s
     if underline:
         s = palette['underline'] + s
+    if background != '':
+        s = palette['back_' + background] + s
     print(s + palette['default'], end=end, file=file)
 
 
-def color_str(s, color='default', bold=False, underline=False):
+def color_str(s, color='default', bold=False, background='', underline=False):
     s = palette[color] + s
     if bold:
         s = palette['bold'] + s
     if underline:
         s = palette['underline'] + s
+    if background != '':
+        s = palette['back_' + background] + s
     return s + palette['default']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##
