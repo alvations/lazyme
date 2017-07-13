@@ -9,10 +9,23 @@ palette = {'red': '\033[91m',
            'yellow': '\033[93m',
            'blue': '\033[94m',
            'pink': '\033[95m',
+           'gray': '\033[37m',
+           'white': '\033[97m',
+           'black': '\033[30m',
            'default': '\033[0m',
            'bold': '\033[1m',
            'underline': '\033[4m',
           }
+
+highlighter = {'red': '\033[101m',
+                'green': '\033[102m',
+                'yellow': '\033[103m',
+                'blue': '\033[104m',
+                'pink': '\033[105m',
+                'gray':, '\033[47m',
+                'black':, '\033[40m',
+                'white':, '\033[107m',
+            }
 
 def deduplicate(s, ch):
     """
@@ -59,7 +72,7 @@ def remove_text_inside_brackets(s, brackets="()[]"):
     return ''.join(saved_chars)
 
 
-def color_print(s, color='default', bold=False, underline=False,
+def color_print(s, color='default', highlight=None, bold=False, underline=False,
                 end='\n', file=sys.stdout):
     """
     From http://stackoverflow.com/a/287944/610569
@@ -69,37 +82,17 @@ def color_print(s, color='default', bold=False, underline=False,
         s = palette['bold'] + s
     if underline:
         s = palette['underline'] + s
+    if highlight and highlight in highlighter:
+        s = higlighter[highlight] + s
     print(s + palette['default'], end=end, file=file)
 
 
-def color_str(s, color='default', bold=False, underline=False):
+def color_str(s, color='default', highlight=None, bold=False, underline=False):
     s = palette[color] + s
     if bold:
         s = palette['bold'] + s
     if underline:
         s = palette['underline'] + s
+    if highlight and highlight in highlighter:
+        s = higlighter[highlight] + s
     return s + palette['default']
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##
