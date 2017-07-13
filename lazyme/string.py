@@ -4,28 +4,44 @@ from __future__ import print_function
 import re
 import sys
 
-palette = {'red': '\033[91m',
-           'green': '\033[92m',
-           'yellow': '\033[93m',
-           'blue': '\033[94m',
-           'pink': '\033[95m',
-           'gray': '\033[37m',
-           'white': '\033[97m',
-           'black': '\033[30m',
-           'default': '\033[0m',
-           'bold': '\033[1m',
-           'underline': '\033[4m',
-          }
+palette = {
+    'black': '\033[30m',
+    'red': '\033[91m',
+    'green': '\033[92m',
+    'yellow': '\033[93m',
+    'blue': '\033[94m',
+    'pink': '\033[95m', 'magenta': '\033[95m',
+    'cyan': '\033[96m',
+    'white': '\033[97m',
+    'gray': '\033[37m',
+    'default': '\033[0m',
+}
 
-highlighter = {'red': '\033[101m',
-                'green': '\033[102m',
-                'yellow': '\033[103m',
-                'blue': '\033[104m',
-                'pink': '\033[105m',
-                'gray': '\033[47m',
-                'black': '\033[40m',
-                'white': '\033[107m',
-            }
+highlighter = {
+    'black': '\033[40m',
+    'red': '\033[101m',
+    'green': '\033[102m',
+    'yellow': '\033[103m',
+    'blue': '\033[104m',
+    'pink': '\033[105m', 'magenta': '\033[105m',
+    'cyan': '\033[106m',
+    'white': '\033[107m',
+    'gray': '\033[47m',
+    'default': '\033[0m',
+}
+
+formatter = {
+    'default': '\033[0m',
+    'bold': '\033[1m',
+    'faint': '\033[2m',
+    'italic': '\033[3m',
+    'underline': '\033[4m',
+    'blinking': '\033[5m',
+    'fast_blinking': '\033[6m',
+    'reverse': '\033[7m',
+    'hide': '\033[8m',
+    'strikethrough': '\033[9m',
+}
 
 def deduplicate(s, ch):
     """
@@ -72,27 +88,29 @@ def remove_text_inside_brackets(s, brackets="()[]"):
     return ''.join(saved_chars)
 
 
-def color_print(s, color='default', highlight=None, bold=False, underline=False,
-                end='\n', file=sys.stdout):
+def color_print(s, color='default', highlight=None, end='\n', file=sys.stdout,
+                **kwargs):
     """
     From http://stackoverflow.com/a/287944/610569
     """
     s = palette[color] + s
-    if bold:
-        s = palette['bold'] + s
-    if underline:
-        s = palette['underline'] + s
+    # Highlight / Background color.
     if highlight and highlight in highlighter:
-        s = higlighter[highlight] + s
+        s = highlighter[highlight] + s
+    # Custom string format.
+    for name, value in kwargs.items():
+        if name in formatter and value == True:
+            s = formatter[name] + s
     print(s + palette['default'], end=end, file=file)
 
 
-def color_str(s, color='default', highlight=None, bold=False, underline=False):
+def color_str(s, color='default', highlight=None, **kwargs):
     s = palette[color] + s
-    if bold:
-        s = palette['bold'] + s
-    if underline:
-        s = palette['underline'] + s
+    # Highlight / Background color.
     if highlight and highlight in highlighter:
-        s = higlighter[highlight] + s
+        s = highlighter[highlight] + s
+    # Custom string format.
+    for name, value in kwargs.items():
+        if name in formatter and value == True:
+            s = formatter[name] + s
     return s + palette['default']
