@@ -33,13 +33,13 @@ formatter = {
     'default': '\033[0m',
     'bold': '\033[1m',
     'faint': '\033[2m',
-    'italic': '\033[3m',
+    'italic': '\033[3m',        # Doesn't work on Ubuntu/Mac terminal.
     'underline': '\033[4m',
     'blinking': '\033[5m',
-    'fast_blinking': '\033[6m',
-    'reverse': '\033[7m',
+    'fast_blinking': '\033[6m', # Doesn't work on Ubuntu/Mac terminal.
+    'reverse': '\033[7m',       # Note: This reverses the back-/foreground color.
     'hide': '\033[8m',
-    'strikethrough': '\033[9m',
+    'strikethrough': '\033[9m', # Doesn't work on Ubuntu/Mac terminal.
 }
 
 def deduplicate(s, ch):
@@ -91,8 +91,9 @@ def color_print(s, color=None, highlight=None, end='\n', file=sys.stdout,
                 **kwargs):
     """
     From http://stackoverflow.com/a/287944/610569
+    See also https://gist.github.com/Sheljohn/68ca3be74139f66dbc6127784f638920
     """
-    if color != 'default':
+    if color in palette and color != 'default':
         s = palette[color] + s
     # Highlight / Background color.
     if highlight and highlight in highlighter:
@@ -105,7 +106,7 @@ def color_print(s, color=None, highlight=None, end='\n', file=sys.stdout,
 
 
 def color_str(s, color=None, highlight=None, **kwargs):
-    if color != 'default':
+    if color in palette and color != 'default':
         s = palette[color] + s
     # Highlight / Background color.
     if highlight and highlight in highlighter:
