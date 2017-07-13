@@ -22,9 +22,9 @@ highlighter = {'red': '\033[101m',
                 'yellow': '\033[103m',
                 'blue': '\033[104m',
                 'pink': '\033[105m',
-                'gray':, '\033[47m',
-                'black':, '\033[40m',
-                'white':, '\033[107m',
+                'gray': '\033[47m',
+                'black': '\033[40m',
+                'white': '\033[107m',
             }
 
 def deduplicate(s, ch):
