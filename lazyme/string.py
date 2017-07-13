@@ -27,7 +27,6 @@ highlighter = {
     'cyan': '\033[106m',
     'white': '\033[107m',
     'gray': '\033[47m',
-    'default': '\033[0m',
 }
 
 formatter = {
@@ -88,12 +87,13 @@ def remove_text_inside_brackets(s, brackets="()[]"):
     return ''.join(saved_chars)
 
 
-def color_print(s, color='default', highlight=None, end='\n', file=sys.stdout,
+def color_print(s, color=None, highlight=None, end='\n', file=sys.stdout,
                 **kwargs):
     """
     From http://stackoverflow.com/a/287944/610569
     """
-    s = palette[color] + s
+    if color != 'default':
+        s = palette[color] + s
     # Highlight / Background color.
     if highlight and highlight in highlighter:
         s = highlighter[highlight] + s
@@ -104,8 +104,9 @@ def color_print(s, color='default', highlight=None, end='\n', file=sys.stdout,
     print(s + palette['default'], end=end, file=file)
 
 
-def color_str(s, color='default', highlight=None, **kwargs):
-    s = palette[color] + s
+def color_str(s, color=None, highlight=None, **kwargs):
+    if color != 'default':
+        s = palette[color] + s
     # Highlight / Background color.
     if highlight and highlight in highlighter:
         s = highlighter[highlight] + s
