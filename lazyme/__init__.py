@@ -1,5 +1,5 @@
 
-from lazyme.fileio import find_file
+from lazyme.fileio import find_files
 
 from lazyme.iterate import per_section, per_chunk, per_window
 from lazyme.iterate import zigzag
