@@ -8,7 +8,7 @@ from distutils.core import setup
 
 setup(
     name='lazyme',
-    version='0.0.19',
+    version='0.0.20',
     packages=['lazyme',],
     url = 'https://github.com/alvations/lazyme',
     description='Lazy python recipes',
