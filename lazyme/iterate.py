@@ -108,12 +108,18 @@ def camel_shuffle(sequence):
 
 class timeout:
     """
-    From https://stackoverflow.com/a/22348885/610569
-    E.g. 
+    From https://stackoverflow.com/a/22348885/610569 , e.g. 
     
         >>> with timeout(seconds=3):
         ...    time.sleep(4)
-         
+    
+    Note: This does not work if the function is catching generic exception, e.g.
+        def bad_func(): 
+            try: time.sleep(100); 
+            except Exception: pass;
+        
+        wih timeout(seconds=3):
+            bad_func()
     """
     def __init__(self, seconds=1, error_message='Timeout'):
         self.seconds = seconds
