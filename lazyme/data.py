@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+import os
+
+try: # Try importing Python3 urllib
+    import urllib.request
+except ImportError: # Now importing Python2 urllib
+    import urllib
+
 def get_content(url):
     try: # Using Python3 urllib.
         with urllib.request.urlopen(url) as response:
