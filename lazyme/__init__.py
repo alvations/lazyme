@@ -9,3 +9,5 @@ from lazyme.string import deduplicate
 from lazyme.string import remove_text_inside_brackets, remove_html_tags
 
 from lazyme.wikipedia import iter_paragraph as iter_wiki
+
+from lazyme.data import get_content, norvig_bigtxt
