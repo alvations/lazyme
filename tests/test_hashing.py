@@ -25,11 +25,13 @@ xxhash = pytest.importorskip("xxhash")
 
 def test_xxh64_int():
     from lazyme.hashing import xxh64
+
     assert isinstance(xxh64("hello"), int)
 
 
 def test_xxh64_hex():
     from lazyme.hashing import xxh64
+
     out = xxh64("hello", digest="hex")
     assert isinstance(out, str)
     assert len(out) == 16

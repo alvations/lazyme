@@ -15,6 +15,7 @@ def test_get_file_hash(tmp_path):
     f = tmp_path / "x.txt"
     f.write_bytes(b"hello")
     import hashlib
+
     assert get_file_hash(str(f)) == hashlib.md5(b"hello").hexdigest()
 
 

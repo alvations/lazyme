@@ -19,6 +19,7 @@ def retry(exceptions, tries=4, delay=3, backoff=2, logger=None):
             each retry).
         logger: Logger to use. If None, print.
     """
+
     def deco_retry(f):
         @wraps(f)
         def f_retry(*args, **kwargs):
@@ -27,7 +28,7 @@ def retry(exceptions, tries=4, delay=3, backoff=2, logger=None):
                 try:
                     return f(*args, **kwargs)
                 except exceptions as e:
-                    msg = f'{e}, Retrying in {mdelay} seconds...'
+                    msg = f"{e}, Retrying in {mdelay} seconds..."
                     if logger:
                         logger.warning(msg)
                     else:
@@ -36,7 +37,9 @@ def retry(exceptions, tries=4, delay=3, backoff=2, logger=None):
                     mtries -= 1
                     mdelay *= backoff
             return f(*args, **kwargs)
+
         return f_retry  # true decorator
+
     return deco_retry
 
 
@@ -55,13 +58,17 @@ class timeout:
         wih timeout(seconds=3):
             bad_func()
     """
-    def __init__(self, seconds=1, error_message='Timeout'):
+
+    def __init__(self, seconds=1, error_message="Timeout"):
         self.seconds = seconds
         self.error_message = error_message
+
     def handle_timeout(self, signum, frame):
         raise TimeoutError(self.error_message)
+
     def __enter__(self):
         signal.signal(signal.SIGALRM, self.handle_timeout)
         signal.alarm(self.seconds)
+
     def __exit__(self, type, value, traceback):
         signal.alarm(0)

@@ -1,4 +1,3 @@
-
 from functools import partial
 from itertools import zip_longest
 from operator import is_not
@@ -19,6 +18,7 @@ def per_section(it, is_delimiter=lambda x: x.isspace()):
     if ret:
         yield ret
 
+
 def per_chunk(iterable, n=1, fillvalue=None):
     """
     From http://stackoverflow.com/a/8991553/610569
@@ -30,6 +30,7 @@ def per_chunk(iterable, n=1, fillvalue=None):
     """
     args = [iter(iterable)] * n
     return zip_longest(*args, fillvalue=fillvalue)
+
 
 def per_window(sequence, n=1):
     """
@@ -47,6 +48,7 @@ def per_window(sequence, n=1):
         start += 1
         stop += 1
 
+
 def zigzag(sequence):
     """
     http://stackoverflow.com/a/1442794/610569
@@ -54,7 +56,8 @@ def zigzag(sequence):
         >>> zigzag(list(range(10)))
         ([0, 2, 4, 6, 8], [1, 3, 5, 7, 9])
     """
-    return sequence[::2], sequence[1::2] # Returns (evens, odds)
+    return sequence[::2], sequence[1::2]  # Returns (evens, odds)
+
 
 def skipping_window(sequence, target, n=3):
     """
@@ -78,10 +81,11 @@ def skipping_window(sequence, target, n=3):
         try:
             # `seq.index(target, start) - (n-1)` would be the next
             # window where the constraint is met.
-            start = max(seq.index(target, start) - (n-1), start)
+            start = max(seq.index(target, start) - (n - 1), start)
             stop = start + n
         except ValueError:
             break
+
 
 def camel_shuffle(sequence):
     """

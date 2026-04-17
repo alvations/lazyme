@@ -1,5 +1,6 @@
 def test_package_imports():
     import lazyme
+
     assert lazyme.__version__
 
 

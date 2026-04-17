@@ -14,7 +14,7 @@ Usage
 ====
 
 ```python
-$ cat test.txt 
+$ cat test.txt
 This is a text block start
 This is the end
 

@@ -1,4 +1,3 @@
-
 from lazyme.data import get_content, getsize, norvig_bigtxt
 from lazyme.dating import daterange, dates_in_quarter
 from lazyme.fileio import find_files, open_two
@@ -13,4 +12,4 @@ from lazyme.string import (
 from lazyme.timing import retry
 from lazyme.wikipedia import iter_paragraph as iter_wiki
 
-__version__ = '0.0.30'
+__version__ = "0.0.30"

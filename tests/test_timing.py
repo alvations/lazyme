@@ -32,6 +32,7 @@ def test_retry_gives_up():
 @pytest.mark.skipif(sys.platform == "win32", reason="SIGALRM not available on Windows")
 def test_timeout_raises():
     from lazyme.timing import timeout
+
     with pytest.raises(TimeoutError):
         with timeout(seconds=1):
             time.sleep(3)
@@ -40,5 +41,6 @@ def test_timeout_raises():
 @pytest.mark.skipif(sys.platform == "win32", reason="SIGALRM not available on Windows")
 def test_timeout_noop_when_fast():
     from lazyme.timing import timeout
+
     with timeout(seconds=5):
         pass

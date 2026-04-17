@@ -21,13 +21,19 @@ def test_per_section_trailing_no_delim():
 
 def test_per_chunk_fill():
     assert list(per_chunk("abcdefghi", n=2)) == [
-        ("a", "b"), ("c", "d"), ("e", "f"), ("g", "h"), ("i", None),
+        ("a", "b"),
+        ("c", "d"),
+        ("e", "f"),
+        ("g", "h"),
+        ("i", None),
     ]
 
 
 def test_per_chunk_exact():
     assert list(per_chunk("abcdefghi", n=3)) == [
-        ("a", "b", "c"), ("d", "e", "f"), ("g", "h", "i"),
+        ("a", "b", "c"),
+        ("d", "e", "f"),
+        ("g", "h", "i"),
     ]
 
 

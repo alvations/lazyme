@@ -20,6 +20,8 @@ htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+Untitled.ipynb
+Untitled*.ipynb
 
 # Virtual envs
 .venv/

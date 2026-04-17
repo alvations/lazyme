@@ -27,7 +27,7 @@ Homepage = "https://github.com/alvations/lazyme"
 [project.optional-dependencies]
 hashing = ["xxhash", "tqdm"]
 wiki = ["ujson"]
-dev = ["pytest", "ruff", "xxhash", "tqdm"]
+dev = ["pytest", "ruff", "pre-commit", "xxhash", "tqdm"]
 
 [tool.hatch.version]
 path = "lazyme/__init__.py"
