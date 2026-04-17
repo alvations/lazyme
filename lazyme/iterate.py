@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-
 
-import signal
-from itertools import groupby, islice
+from functools import partial
+from itertools import zip_longest
+from operator import is_not
 
-try:
-    from itertools import zip_longest
-except ImportError:
-    from itertools import izip_longest as zip_longest
 
 def per_section(it, is_delimiter=lambda x: x.isspace()):
     """
@@ -104,3 +100,7 @@ def camel_shuffle(sequence):
     one, three = zigzag(one_three)
     two, four = zigzag(two_four)
     return one + list(reversed(two)) + three + list(reversed(four))
+
+
+def remove_none(iterable):
+    return filter(partial(is_not, None), iterable)

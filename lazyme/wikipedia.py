@@ -1,12 +1,7 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import print_function
 
 import io
 import os
 import sys
-import itertools
-from time import gmtime, strftime
 from zipfile import ZipFile
 
 try: # Try to use a faster json library.
@@ -44,7 +39,7 @@ def iter_paragraph(filename, filetype):
             for wiki_file in files:
                 infile = os.path.join(root, wiki_file)
                 print(infile, end='\n', file=sys.stderr) # Logging progress.
-                with io.open(infile, 'r', encoding='utf8') as f_in:
+                with open(infile, encoding='utf8') as f_in:
                     for line in f_in:
                         # Each line is a separate json.
                         data = json.loads(line)
@@ -55,10 +50,10 @@ def iter_paragraph(filename, filetype):
     elif filetype == 'wikidump':
         # Simply iterate through every line in the dump
         # and treat each line as a paragraph.
-        with io.open(filename, 'r', encoding='utf8') as f_in:
+        with open(filename, encoding='utf8') as f_in:
             for line_count, paragraph in enumerate(f_in):
-                if line_count % 100000:
-                    _msg = 'Processing line {}\n'.format(line_count)
+                if line_count % 100000 == 0:
+                    _msg = f'Processing line {line_count}\n'
                     print(_msg, file=sys.stderr) # Logging progress.
-                if pargraph:
+                if paragraph:
                     yield paragraph

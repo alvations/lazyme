@@ -1,6 +1,8 @@
+import signal
 import sys
 import time
 from functools import wraps
+
 
 def retry(exceptions, tries=4, delay=3, backoff=2, logger=None):
     """
@@ -25,7 +27,7 @@ def retry(exceptions, tries=4, delay=3, backoff=2, logger=None):
                 try:
                     return f(*args, **kwargs)
                 except exceptions as e:
-                    msg = '{}, Retrying in {} seconds...'.format(e, mdelay)
+                    msg = f'{e}, Retrying in {mdelay} seconds...'
                     if logger:
                         logger.warning(msg)
                     else:
@@ -42,7 +44,7 @@ class timeout:
     """
     From https://stackoverflow.com/a/22348885/610569 , e.g.
 
-        >>> with timeout(seconds=3):
+        >>> with timeout(seconds=3):  # doctest: +SKIP
         ...    time.sleep(4)
 
     Note: This does not work if the function is catching generic exception, e.g.
